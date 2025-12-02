@@ -6,6 +6,7 @@ import excludedRoutes from "./excluded-routes";
 import { onLogout } from "../utils/logout";
 import { createClient } from "graphql-ws";
 import { getMainDefinition } from "@apollo/client/utilities";
+import Cookies from "js-cookie";
 
 const logoutLink = onError((error) => {
   if (
@@ -19,11 +20,20 @@ const logoutLink = onError((error) => {
   }
 });
 
-const httpLink = new HttpLink({ uri: `${API_URL}/graphql` });
+const httpLink = new HttpLink({
+  uri: `${API_URL}/graphql`,
+  credentials: "include",
+});
 
 const wsLink = new GraphQLWsLink(
   createClient({
     url: `ws://${WS_URL}/graphql`,
+    connectionParams: () => {
+      const token = Cookies.get("Authentication");
+      return {
+        Authorization: token ? `Bearer ${token}` : "",
+      };
+    },
   })
 );
 

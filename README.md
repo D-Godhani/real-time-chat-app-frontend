@@ -8,8 +8,8 @@ In the project directory, you can run:
 
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Copy `env.sample` to `.env` (or export the same variables another way), fill in your API/WS URLs, then run `yarn start`.\
+The dev server will print the exact URL it is listening on (CRA defaults to port 3000); open that address in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.

@@ -2,6 +2,7 @@ import { Avatar, Button, Stack, Typography } from "@mui/material";
 import { UploadFile } from "@mui/icons-material";
 import { useGetMe } from "../../hooks/useGetMe";
 import { API_URL } from "../../constants/urls";
+// import { WS_URL } from "../../constants/urls";
 import { snackVar } from "../../constants/snack";
 
 const Profile = () => {
@@ -13,6 +14,7 @@ const Profile = () => {
       formData.append("file", event.target.files[0]);
       const res = await fetch(`${API_URL}/users/image`, {
         method: "POST",
+        credentials: "include",
         body: formData,
       });
       if (!res.ok) {

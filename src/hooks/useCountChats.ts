@@ -7,7 +7,9 @@ const useCountChats = () => {
   const [chatsCount, setChatsCount] = useState<number | undefined>();
 
   const countChats = useCallback(async () => {
-    const res = await fetch(`${API_URL}/chats/count`);
+    const res = await fetch(`${API_URL}/chats/count`, {
+      credentials: "include",
+    });
     if (!res.ok) {
       snackVar(UNKNOWN_ERROR_SNACK_MESSAGE);
       return;
